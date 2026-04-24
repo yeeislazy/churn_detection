@@ -1,0 +1,16 @@
+creation_timestamp: 1777043477511
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1777043477511
+model_id: m-4eee60acb7dd4297a4fdd1754af0ab4b
+name: customer-churn-model
+run_id: 0f6c995776b24c7fb9085d2efd22bc98
+run_link: null
+source: models:/m-4eee60acb7dd4297a4fdd1754af0ab4b
+status: READY
+status_message: null
+storage_location: file:///C:/Users/yeech/Documents/Project/churn_detection/mlruns/550612897633589605/models/m-4eee60acb7dd4297a4fdd1754af0ab4b/artifacts
+user_id: null
+version: 1
+workspace: default

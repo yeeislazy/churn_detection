@@ -1,0 +1,163 @@
+{
+  "features": {
+    "numerical": [
+      {
+        "name": "tenure",
+        "type": "int64"
+      },
+      {
+        "name": "MonthlyCharges",
+        "type": "float64"
+      },
+      {
+        "name": "TotalCharges",
+        "type": "float64"
+      }
+    ],
+    "categorical": [
+      {
+        "name": "gender",
+        "values": [
+          "Female",
+          "Male"
+        ]
+      },
+      {
+        "name": "SeniorCitizen",
+        "values": [
+          0,
+          1
+        ]
+      },
+      {
+        "name": "Partner",
+        "values": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "name": "Dependents",
+        "values": [
+          "No",
+          "Yes"
+        ]
+      },
+      {
+        "name": "PhoneService",
+        "values": [
+          "No",
+          "Yes"
+        ]
+      },
+      {
+        "name": "MultipleLines",
+        "values": [
+          "No phone service",
+          "No",
+          "Yes"
+        ]
+      },
+      {
+        "name": "InternetService",
+        "values": [
+          "DSL",
+          "Fiber optic",
+          "No"
+        ]
+      },
+      {
+        "name": "OnlineSecurity",
+        "values": [
+          "No",
+          "Yes",
+          "No internet service"
+        ]
+      },
+      {
+        "name": "OnlineBackup",
+        "values": [
+          "Yes",
+          "No",
+          "No internet service"
+        ]
+      },
+      {
+        "name": "DeviceProtection",
+        "values": [
+          "No",
+          "Yes",
+          "No internet service"
+        ]
+      },
+      {
+        "name": "TechSupport",
+        "values": [
+          "No",
+          "Yes",
+          "No internet service"
+        ]
+      },
+      {
+        "name": "StreamingTV",
+        "values": [
+          "No",
+          "Yes",
+          "No internet service"
+        ]
+      },
+      {
+        "name": "StreamingMovies",
+        "values": [
+          "No",
+          "Yes",
+          "No internet service"
+        ]
+      },
+      {
+        "name": "Contract",
+        "values": [
+          "Month-to-month",
+          "One year",
+          "Two year"
+        ]
+      },
+      {
+        "name": "PaperlessBilling",
+        "values": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "name": "PaymentMethod",
+        "values": [
+          "Electronic check",
+          "Mailed check",
+          "Bank transfer (automatic)",
+          "Credit card (automatic)"
+        ]
+      },
+      {
+        "name": "SeniorCitizen",
+        "values": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "target": [
+    "Churn"
+  ],
+  "feature_engineering": {
+    "numerical": {
+      "scaler": "StandardScaler"
+    },
+    "categorical": {
+      "encoding": "OneHotEncoder",
+      "handle_unknown": "ignore"
+    }
+  },
+  "threshold": 0.2899999999999999
+}

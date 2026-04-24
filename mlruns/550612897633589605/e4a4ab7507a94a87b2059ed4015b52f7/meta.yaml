@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/yeech/Documents/Project/churn_detection/mlruns/550612897633589605/e4a4ab7507a94a87b2059ed4015b52f7/artifacts
+end_time: 1777043464958
+entry_point_name: ''
+experiment_id: '550612897633589605'
+lifecycle_stage: active
+run_id: e4a4ab7507a94a87b2059ed4015b52f7
+run_name: delicate-robin-654
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777043464611
+status: 3
+tags: []
+user_id: yeech

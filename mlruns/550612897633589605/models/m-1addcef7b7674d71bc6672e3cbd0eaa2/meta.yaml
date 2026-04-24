@@ -1,0 +1,10 @@
+artifact_location: file:///C:/Users/yeech/Documents/Project/churn_detection/mlruns/550612897633589605/models/m-1addcef7b7674d71bc6672e3cbd0eaa2/artifacts
+creation_timestamp: 1777043475978
+experiment_id: '550612897633589605'
+last_updated_timestamp: 1777043476164
+model_id: m-1addcef7b7674d71bc6672e3cbd0eaa2
+model_type: null
+name: LogisticRegression
+source_run_id: 3819e891e7ad46a7b0b4395c46f60a7a
+status: 2
+status_message: null

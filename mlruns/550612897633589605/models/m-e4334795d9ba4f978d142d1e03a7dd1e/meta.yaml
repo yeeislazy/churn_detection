@@ -1,0 +1,10 @@
+artifact_location: file:///C:/Users/yeech/Documents/Project/churn_detection/mlruns/550612897633589605/models/m-e4334795d9ba4f978d142d1e03a7dd1e/artifacts
+creation_timestamp: 1777043473514
+experiment_id: '550612897633589605'
+last_updated_timestamp: 1777043473813
+model_id: m-e4334795d9ba4f978d142d1e03a7dd1e
+model_type: null
+name: RandomForestClassifier
+source_run_id: fbf9bc63b7e84a25b8d513d028442196
+status: 2
+status_message: null

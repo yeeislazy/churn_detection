@@ -1,0 +1,32 @@
+[project]
+name = "churn-detection"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.136.0",
+    "kagglehub>=1.0.0",
+    "mlflow>=3.11.1",
+    "pandas>=2.3.3",
+    "pydantic>=2.13.3",
+    "scikit-learn>=1.8.0",
+    "uvicorn>=0.45.0",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.2.0",
+    "matplotlib>=3.10.8",
+    "pandas>=2.3.3",
+]
+
+[project.scripts]
+download-data = "scripts.download_data:download"
+preprocess-data = "scripts.preprocess_data:main"
+train-model = "training.train_model:main"
+main = "app.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["app*", "training*", "scripts*"]

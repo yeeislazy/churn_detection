@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/yeech/Documents/Project/churn_detection/mlruns/550612897633589605/b211de9f0e23424291c4d0a6e5d07c39/artifacts
+end_time: 1777043468037
+entry_point_name: ''
+experiment_id: '550612897633589605'
+lifecycle_stage: active
+run_id: b211de9f0e23424291c4d0a6e5d07c39
+run_name: abundant-dove-826
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777043467667
+status: 3
+tags: []
+user_id: yeech

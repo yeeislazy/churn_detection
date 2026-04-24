@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/yeech/Documents/Project/churn_detection/mlruns/550612897633589605/09f37298d21e4656875257bb48520e6a/artifacts
+end_time: 1777043475577
+entry_point_name: ''
+experiment_id: '550612897633589605'
+lifecycle_stage: active
+run_id: 09f37298d21e4656875257bb48520e6a
+run_name: casual-croc-569
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777043475227
+status: 3
+tags: []
+user_id: yeech

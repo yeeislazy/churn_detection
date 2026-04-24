@@ -1,0 +1,8 @@
+artifact_location: file:///C:/Users/yeech/Documents/Project/churn_detection/mlruns/550612897633589605
+creation_time: 1777043462840
+experiment_id: '550612897633589605'
+last_update_time: 1777043462840
+lifecycle_stage: active
+name: churn_detection
+trace_location: null
+workspace: default

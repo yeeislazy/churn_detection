@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/yeech/Documents/Project/churn_detection/mlruns/550612897633589605/20f0ad420c93490fb9d6ef4fe8e447a6/artifacts
+end_time: 1777043476846
+entry_point_name: ''
+experiment_id: '550612897633589605'
+lifecycle_stage: active
+run_id: 20f0ad420c93490fb9d6ef4fe8e447a6
+run_name: polite-colt-160
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777043476513
+status: 3
+tags: []
+user_id: yeech
