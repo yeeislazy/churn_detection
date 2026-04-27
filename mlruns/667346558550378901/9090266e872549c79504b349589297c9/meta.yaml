@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/667346558550378901/9090266e872549c79504b349589297c9/artifacts
+end_time: 1777281208293
+entry_point_name: ''
+experiment_id: '667346558550378901'
+lifecycle_stage: active
+run_id: 9090266e872549c79504b349589297c9
+run_name: spiffy-gull-404
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777281200210
+status: 3
+tags: []
+user_id: yeech

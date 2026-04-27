@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/667346558550378901/a4d8fc79bda645408b5885d6b8988ba4/artifacts
+end_time: 1777281212201
+entry_point_name: ''
+experiment_id: '667346558550378901'
+lifecycle_stage: active
+run_id: a4d8fc79bda645408b5885d6b8988ba4
+run_name: delicate-gull-712
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777281208915
+status: 3
+tags: []
+user_id: yeech

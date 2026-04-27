@@ -1,0 +1,8 @@
+artifact_location: mlflow-artifacts:/667346558550378901
+creation_time: 1777281159672
+experiment_id: '667346558550378901'
+last_update_time: 1777281159672
+lifecycle_stage: active
+name: churn_detection
+trace_location: null
+workspace: default

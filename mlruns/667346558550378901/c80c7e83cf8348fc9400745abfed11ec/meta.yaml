@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/667346558550378901/c80c7e83cf8348fc9400745abfed11ec/artifacts
+end_time: 1777281223529
+entry_point_name: ''
+experiment_id: '667346558550378901'
+lifecycle_stage: active
+run_id: c80c7e83cf8348fc9400745abfed11ec
+run_name: shivering-chimp-348
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777281220229
+status: 3
+tags: []
+user_id: yeech

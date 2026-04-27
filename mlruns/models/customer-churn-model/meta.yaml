@@ -1,8 +1,8 @@
 aliases: {}
-creation_timestamp: 1777043477479
+creation_timestamp: 1777281233225
 deployment_job_id: null
 deployment_job_state: null
-description: null
-last_updated_timestamp: 1777043477511
+description: ''
+last_updated_timestamp: 1777281234695
 name: customer-churn-model
 workspace: default

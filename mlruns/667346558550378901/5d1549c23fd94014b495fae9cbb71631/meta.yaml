@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/667346558550378901/5d1549c23fd94014b495fae9cbb71631/artifacts
+end_time: 1777281182294
+entry_point_name: ''
+experiment_id: '667346558550378901'
+lifecycle_stage: active
+run_id: 5d1549c23fd94014b495fae9cbb71631
+run_name: marvelous-moth-330
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777281178179
+status: 3
+tags: []
+user_id: yeech

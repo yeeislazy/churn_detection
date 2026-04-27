@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/667346558550378901/9b8af418880d47059cd3b425f0eae12a/artifacts
+end_time: 1777281164607
+entry_point_name: ''
+experiment_id: '667346558550378901'
+lifecycle_stage: active
+run_id: 9b8af418880d47059cd3b425f0eae12a
+run_name: nosy-asp-995
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777281160301
+status: 3
+tags: []
+user_id: yeech

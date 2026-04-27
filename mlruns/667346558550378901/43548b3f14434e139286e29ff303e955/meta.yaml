@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/667346558550378901/43548b3f14434e139286e29ff303e955/artifacts
+end_time: 1777281187226
+entry_point_name: ''
+experiment_id: '667346558550378901'
+lifecycle_stage: active
+run_id: 43548b3f14434e139286e29ff303e955
+run_name: capricious-hen-13
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777281183358
+status: 3
+tags: []
+user_id: yeech

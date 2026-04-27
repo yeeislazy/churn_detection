@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/667346558550378901/d7d7a9f367e445c298c0d19ee9e8e909/artifacts
+end_time: 1777281227453
+entry_point_name: ''
+experiment_id: '667346558550378901'
+lifecycle_stage: active
+run_id: d7d7a9f367e445c298c0d19ee9e8e909
+run_name: learned-ram-665
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777281224133
+status: 3
+tags: []
+user_id: yeech

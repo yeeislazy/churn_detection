@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/667346558550378901/0de0be1ac1f14231af441ab8f3cb70d1/artifacts
+end_time: 1777281197822
+entry_point_name: ''
+experiment_id: '667346558550378901'
+lifecycle_stage: active
+run_id: 0de0be1ac1f14231af441ab8f3cb70d1
+run_name: adorable-goose-690
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777281189317
+status: 3
+tags: []
+user_id: yeech

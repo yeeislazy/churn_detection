@@ -1,3 +1,4 @@
+import os
 import tempfile
 import numpy as np
 import pandas as pd
@@ -125,7 +126,7 @@ def main():
     parser = argparse.ArgumentParser(description="Run model experiments for churn detection")
     parser.add_argument('--dataset-version', type=str, help='Specify the dataset version to use (e.g., v1, v2). If not provided, the latest version will be used.')
     parser.add_argument('--experiment-name', type=str, default="churn_detection", help='Specify the MLflow experiment name. Default is "churn_detection".')
-    parser.add_argument('--track-uri', type=str, help='Specify the MLflow tracking URI. Default is ./mlruns.')
+    parser.add_argument('--track-uri', type=str, help='Specify the MLflow tracking URI. Default is "http://localhost:5000".')
     parser.add_argument('--metric', type=str, default="recall", choices=["f1", "precision", "recall", "accuracy"], help='Specify the metric to optimize for model registration. Default is "recall".')
     
     args = parser.parse_args()
@@ -156,10 +157,12 @@ def main():
 
     schema = json.load(open(dataset_dir / "schema.json", "r"))
 
-    if args.track_uri:
+    if os.getenv("MLFLOW_TRACKING_URI"):
+        track_uri = os.getenv("MLFLOW_TRACKING_URI")
+    elif args.track_uri:
         track_uri = args.track_uri  
     else:
-        track_uri = (root_dir / "mlruns").as_uri()
+        track_uri = "http://localhost:5000"
 
     mlflow.set_tracking_uri(track_uri)
     exp = mlflow.set_experiment(args.experiment_name)
