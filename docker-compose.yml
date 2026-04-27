@@ -1,6 +1,6 @@
 services:
   mlflow:
-    image: churn-mlflow:0.1.0
+    image: yee1098/churn-mlflow:0.1.0
     ports:
       - "5000:5000"
     volumes:
