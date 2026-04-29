@@ -4,8 +4,11 @@ WORKDIR /mlflow
 
 COPY mlruns ./mlruns
 
-RUN pip install mlflow
+RUN pip install mlflow==3.11.1
+
+ENV GUNICORN_CMD_ARGS="--timeout 120"
+ENV PYTHONUNBUFFERED=1
 
 EXPOSE 5000
 
-CMD ["mlflow", "server", "--backend-store-uri", "/mlflow/mlruns", "--artifacts-destination", "/mlflow/mlruns", "--host", "0.0.0.0", "--port", "5000", "--allowed-hosts", "*", "--cors-allowed-origins", "*"]
+CMD ["mlflow", "server", "--backend-store-uri", "/mlflow/mlruns", "--artifacts-destination", "/mlflow/mlruns", "--host", "0.0.0.0", "--port", "5000", "--allowed-hosts", "*", "--workers", "1", "--cors-allowed-origins", "*"]

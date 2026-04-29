@@ -1,13 +1,13 @@
 services:
   mlflow:
-    image: yee1098/churn-mlflow:0.1.0
+    image: yee1098/churn-mlflow
     ports:
       - "5000:5000"
     volumes:
       - ./mlruns:/mlflow/mlruns
 
   api:
-    image: yee1098/churn-api:0.1.0
+    image: yee1098/churn-api
     ports:
       - "8000:8000"
     environment:
