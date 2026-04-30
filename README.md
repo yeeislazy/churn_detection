@@ -71,6 +71,7 @@ cd churn_detection
 
 uv sync
 uv run mlflow server --backend-store-uri ./mlruns --default-artifact-root ./mlruns &
+uv pip install -e .
 uv run main
 ```
 
