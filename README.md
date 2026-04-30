@@ -61,21 +61,7 @@ docker-compose.yml
 Dockerfile
 ```
 
-## Deployment
-
-### Run Locally
-
-```bash
-git clone https://github.com/yeeislazy/churn_detection
-cd churn_detection
-
-uv sync
-uv run mlflow server --backend-store-uri ./mlruns --default-artifact-root ./mlruns &
-uv pip install -e .
-uv run main
-```
-
-### Docker Deployment
+## Docker Deployment
 
 ```bash
 git clone https://github.com/yeeislazy/churn_detection
