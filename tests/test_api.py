@@ -1,38 +1,68 @@
 from fastapi.testclient import TestClient
-from app.main import app
+from fastapi import FastAPI
+from pydantic import BaseModel
+import pandas as pd
+import numpy as np
+from app.main import register_routes
 
 
+# Fake components
+class FakeModel:
+    def __init__(self):
+        self.classes_ = ["No", "Yes"]
+
+    def predict(self, df):
+        # return probabilities to simulate a real model's output
+        return np.array([[0.2, 0.8]])  # high probability for "Yes"
+
+
+class FakeRequest(BaseModel):
+    gender: str
+    tenure: int
+    MonthlyCharges: float
+
+
+# create test app with fake components
+def create_test_app():
+    app = FastAPI()
+
+    # mock state
+    app.state.model = FakeModel()
+    app.state.RequestModel = FakeRequest
+    app.state.threshold = 0.5
+
+    # real route registration
+    register_routes(app)
+
+    return app
+
+
+# tests
 def test_health_check():
-    with TestClient(app) as client:
-        response = client.get("/")
-        assert response.status_code == 200
+    app = create_test_app()
+    client = TestClient(app)
+
+    response = client.get("/")
+    assert response.status_code == 200
+    assert response.json() == {"status": "ok"}
 
 
 def test_prediction():
+    app = create_test_app()
+    client = TestClient(app)
+
     sample_input = {
-        'gender': 'Male',
-        'SeniorCitizen': 1,
-        'Partner': 'Yes',
-        'Dependents': 'No',
-        'tenure': 61,
-        'PhoneService': 'Yes',
-        'MultipleLines': 'Yes',
-        'InternetService': 'No',
-        'OnlineSecurity': 'No',
-        'OnlineBackup': 'No',
-        'DeviceProtection': 'No',
-        'TechSupport': 'No',
-        'StreamingTV': 'No',
-        'StreamingMovies': 'No',
-        'Contract': 'Two year',
-        'PaperlessBilling': 'No',
-        'PaymentMethod': 'Bank transfer (automatic)',
-        'MonthlyCharges': 25.0,
-        'TotalCharges': 1501.75
+        "gender": "Male",
+        "tenure": 10,
+        "MonthlyCharges": 50.0
     }
 
-    with TestClient(app) as client:
-        response = client.post("/predict", json=sample_input)
+    response = client.post("/predict", json=sample_input)
 
-        assert response.status_code == 200
-        assert "prediction" in response.json()
+    assert response.status_code == 200
+
+    data = response.json()
+
+    assert "prediction" in data
+    assert "probability" in data
+    assert data["prediction"] in ["Yes", "No"]

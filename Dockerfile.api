@@ -11,6 +11,9 @@ COPY pyproject.toml uv.lock ./
 # install dependencies
 RUN uv sync --frozen --no-dev
 
+# install local package
+RUN uv pip install -e .
+
 # set PATH for uv virtual environment
 ENV PATH="/app/.venv/bin:$PATH"
 
