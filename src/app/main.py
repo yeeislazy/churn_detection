@@ -13,10 +13,7 @@ from pathlib import Path
 import time
 
 MODEL_NAME = "customer-churn-model"
-MLFLOW_TRACKING_URI = os.getenv("MLFLOW_TRACKING_URI")
-if not MLFLOW_TRACKING_URI:
-    print("MLFLOW_TRACKING_URI not set, using local as default")
-    MLFLOW_TRACKING_URI = (Path(__file__).parent.parent.parent / "mlruns").as_uri()
+MLFLOW_TRACKING_URI = os.getenv("MLFLOW_TRACKING_URI", "http://localhost:5000")
 mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
 
 # =========================
@@ -46,9 +43,7 @@ def create_request_model(schema):
     return create_model("ChurnRequest", **fields)
 
 
-# =========================
-# 动态注册 endpoint（关键）
-# =========================
+# dynamic routes
 def register_routes(app: FastAPI):
 
     Model = app.state.RequestModel
@@ -81,10 +76,11 @@ def register_routes(app: FastAPI):
             "threshold": threshold
         }
 
+    @app.get("/")
+    async def health_check():
+        return {"status": "ok"}
 
-# =========================
 # lifespan
-# =========================
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     print("Loading model...")
@@ -134,13 +130,13 @@ async def lifespan(app: FastAPI):
         with open(schema_path) as f:
             schema = json.load(f)
 
-    # 存 state
+    # store in app state for global access
     app.state.model = model
     app.state.schema = schema
     app.state.threshold = schema.get("threshold", 0.5)
     app.state.RequestModel = create_request_model(schema)
 
-    # 🔥 关键：这里注册 routes
+    # register routes after model is loaded
     register_routes(app)
 
     print("Model loaded")
@@ -151,7 +147,6 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
-
 
 def main():
     uvicorn.run(app, host="0.0.0.0", port=8000)

@@ -6,10 +6,12 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "fastapi>=0.136.0",
+    "httpx>=0.28.1",
     "kagglehub>=1.0.0",
     "mlflow>=3.11.1",
     "pandas>=2.3.3",
     "pydantic>=2.13.3",
+    "pytest>=9.0.3",
     "scikit-learn>=1.8.0",
     "uvicorn>=0.45.0",
 ]
