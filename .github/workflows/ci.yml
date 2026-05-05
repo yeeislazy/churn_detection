@@ -32,4 +32,4 @@ jobs:
         
     - name: Build Docker image
       run: |
-        docker build -f Dokerfile.api -t churn-api:latest .
+        docker build -f Dockerfile.api -t churn-api .
