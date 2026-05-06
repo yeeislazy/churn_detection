@@ -91,5 +91,8 @@ jobs:
     - name: Health check
       run: |
         sleep 30
-        curl -f http://56.68.56.10:8000/
-        curl -f http://56.68.56.10:5000/
+        curl -f --retry 5 --retry-delay 10 --retry-max-time 60 \
+        http://${{ secrets.SERVER_IP }}:8000/ || exit 1
+    
+        curl -f --retry 5 --retry-delay 10 --retry-max-time 60 \
+          http://${{ secrets.SERVER_IP }}:5000/ || exit 1
