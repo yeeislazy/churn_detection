@@ -11,15 +11,38 @@ from enum import Enum
 import os
 from pathlib import Path
 import time
+import logging
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+# console handler
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.INFO)
+
+# file handler
+log_file = Path(__file__).parent.parent.parent / "logs" / "app.log"
+file_handler = logging.FileHandler(log_file)
+file_handler.setLevel(logging.INFO)
+
+# formatter
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+console_handler.setFormatter(formatter)
+file_handler.setFormatter(formatter)
+
+logger.addHandler(console_handler)
+logger.addHandler(file_handler)
 
 MODEL_NAME = "customer-churn-model"
 MLFLOW_TRACKING_URI = os.getenv("MLFLOW_TRACKING_URI", "http://localhost:5000")
+logger.info(f"Using MLflow tracking URI: {MLFLOW_TRACKING_URI}")
 mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
 
 # =========================
 # dynamic schema → pydantic
 # =========================
 def create_request_model(schema):
+    logger.info("Creating request model from schema...")
     fields = {}
 
     for col in schema["features"]["numerical"]:
@@ -39,8 +62,13 @@ def create_request_model(schema):
             fields[name] = (enum_cls, ...)
         else:
             fields[name] = (str, ...)
-
-    return create_model("ChurnRequest", **fields)
+    try:
+        model = create_model("ChurnRequest", **fields)
+        logger.info("Request model created successfully")
+        return model
+    except Exception as e:
+        logger.error("Error creating request model", exc_info=True)
+        raise e
 
 
 # dynamic routes
@@ -60,15 +88,23 @@ def register_routes(app: FastAPI):
         model = app.state.model
         threshold = app.state.threshold
 
-        # predict
+        # determine positive class index
         try:
             classes = model.classes_
             pos_index = list(classes).index("Yes")
+            logger.info('Positive class index found at: %d', pos_index)
         except Exception:
             pos_index = 1
-
-        prob = float(model.predict(df)[:, pos_index][0])
-        pred = int(prob >= threshold)
+            logger.warning('Positive class index not found, defaulting to index 1')
+            
+        # predict
+        try:
+            prob = float(model.predict(df)[:, pos_index][0])
+            pred = int(prob >= threshold)
+            logger.info(f"Predicted probability: {prob}, Threshold: {threshold}, Prediction: {pred}")
+        except Exception as e:
+            logger.error("Error during prediction", exc_info=True)
+            raise HTTPException(status_code=500, detail="Prediction error")
 
         return {
             "prediction": "Yes" if pred else "No",
@@ -83,7 +119,7 @@ def register_routes(app: FastAPI):
 # lifespan
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    print("Loading model...")
+    logger.info("Loading model...")
 
     client = MlflowClient()
 
@@ -92,34 +128,35 @@ async def lifespan(app: FastAPI):
     
     for i in range(10):
         try:
-            print(f"Trying to connect MLflow... attempt {i+1}")
+            logger.info(f"Trying to connect MLflow... attempt {i+1}")
             model_uri = f"models:/{MODEL_NAME}@champion"
             model = mlflow.pyfunc.load_model(model_uri)
             version = client.get_model_version_by_alias(MODEL_NAME, "champion")
-            print("Loaded CHAMPION model")
+            logger.info("Loaded CHAMPION model")
             break
 
         except Exception as e:
-            print("Retrying MLflow...", e)
+            logger.warning("Retrying MLflow...", e)
             time.sleep(2)
         
     if model is None:
         for i in range(5):
             try:
-                print("No champion found, fallback to latest")
+                logger.info("No champion found, fallback to latest")
                 versions = client.search_model_versions(f"name='{MODEL_NAME}'")
                 latest = sorted(versions, key=lambda x: int(x.version))[-1]
 
                 model_uri = f"models:/{MODEL_NAME}/{latest.version}"
                 model = mlflow.pyfunc.load_model(model_uri)
                 version = latest
-                print(f"Loaded latest model version {latest.version}")
+                logger.info(f"Loaded latest model version {latest.version}")
                 break
             except Exception as e:
-                print("Retrying MLflow...", e)
+                logger.warning("Retrying MLflow...", e)
                 time.sleep(2)
 
     if model is None:
+        logger.error("Failed to load model from MLflow after multiple attempts")
         raise RuntimeError("Failed to connect to MLflow")
     
     # load schema
@@ -139,11 +176,11 @@ async def lifespan(app: FastAPI):
     # register routes after model is loaded
     register_routes(app)
 
-    print("Model loaded")
+    logger.info("Model loaded")
 
     yield
 
-    print("Shutting down...")
+    logger.info("Shutting down...")
 
 
 app = FastAPI(lifespan=lifespan)

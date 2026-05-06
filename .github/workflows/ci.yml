@@ -55,3 +55,16 @@ jobs:
         file: Dockerfile.api
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/churn-api:latest
+    
+    - name: Deploy on remote server
+      uses: appleboy/ssh-action@v1
+      with:
+        host: ${{ secrets.SERVER_IP }}
+        username: ${{ secrets.SERVER_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          cd /churn-detection
+          docker compose down
+          docker rmi $(docker images -q)
+          docker compose up -d
+          docker system prune -f
