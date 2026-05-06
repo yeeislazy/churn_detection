@@ -68,3 +68,9 @@ jobs:
           sudo docker rmi $(docker images -q)
           sudo docker compose up -d
           sudo docker system prune -f
+
+    - name: Health check
+      run: |
+        sleep 30
+        curl -f http://56.68.56.10:8000/
+        curl -f http://56.68.56.10:5000/
