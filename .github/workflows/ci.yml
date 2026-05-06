@@ -81,6 +81,8 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
           cd churn-detection/
+          sudo systemctl start docker
+          sudo systemctl enable docker
           sudo docker compose down
           sudo docker rmi $(sudo docker images -q) .
           sudo docker compose up -d
